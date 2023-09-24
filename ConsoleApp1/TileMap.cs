@@ -5,10 +5,14 @@ namespace DarkTown
 {
 	internal class TileMap
 	{
+		//массив заначений света от -128 до 127  
 		public sbyte[] Light;
+		//массив тайлов.
 		public Tile[] tiles;
 
+		//количество тайлов по X
 		int Widht;
+		//количество тайлов по Y
 		int Heihgt;
 		public TileMap(int widht,int heihgt) 
 		{
@@ -17,6 +21,8 @@ namespace DarkTown
 			tiles = new Tile[Widht * Heihgt];
 			Light = new sbyte[Widht * Heihgt];
 		}
+
+		//создаёт тайл мап присваивая занчение массивам 
 		public void GenerateTileMap(Program program)
 		{
 			for (int i = 0; i < tiles.Length; i++)

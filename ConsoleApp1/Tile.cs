@@ -9,18 +9,24 @@ namespace DarkTown
 {
 	internal class Tile : Drawable
 	{
+		//обьект заднего фона
 		public BackGround backGround;
 
+		//значение от -128 до 127 для обозначение уровня освещения
 		public sbyte LightLevel;
 
+		//спрайт тьмы
 		private Sprite dark;
+		//спрайт светлой тьмы
 		private Sprite lightDark;
 
-
+		//мжножетель размера объекта (приватный)
 		SFML.System.Vector2f scale;
+		//публичное свойство множетеля размера
 		public SFML.System.Vector2f Scale 
 		{
 			get { return scale;}
+			//присвание занчений для подопечных объектов
 			set 
 			{	
 				scale = value;
@@ -29,11 +35,14 @@ namespace DarkTown
 				dark.Scale = value;
 			}
 		}
+		//приватная переменая позиции
 		SFML.System.Vector2f position;
+		//публичное свойство позиции
 		public SFML.System.Vector2f Position
 		{
 			get { return position; }
-			set 
+			//присвание занчений для подопечных объектов
+			set
 			{ 
 				position = value;
 				backGround.Sprite.Position = value; 
@@ -41,6 +50,7 @@ namespace DarkTown
 				dark.Position = value;
 			}
 		}
+
 		public Tile(BackGround back,SFML.System.Vector2f Scale,SFML.System.Vector2f Position,Texture dark,Texture lightDark)
 		{
 			backGround = back;
@@ -50,6 +60,7 @@ namespace DarkTown
 			this.Scale = Scale;
 			this.Position = Position;
 		}
+		//метод для отрисовки
 		public void Draw(RenderTarget target,RenderStates states)
 		{
 			backGround.Draw(target, states);

@@ -9,12 +9,16 @@ namespace DarkTown
 {
 	internal class BackGround : Drawable
 	{
+		//объект sprite для вывода изоброжение 
 		private readonly Sprite sprite;
+
+		//свойство для публичного предстовление sprite
 		public Sprite Sprite { get { return sprite; } }
 		public BackGround(Texture texture)
 		{
 			sprite = new Sprite(texture);
 		}
+		// метод для вывода данных на экран
 		public void Draw( RenderTarget target,RenderStates states)
 		{
 			sprite.Draw(target, states);
