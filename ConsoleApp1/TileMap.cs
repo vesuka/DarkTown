@@ -5,16 +5,32 @@ namespace DarkTown
 {
 	internal class TileMap
 	{
-		//массив заначений света от -128 до 127  
+		/// <summary>
+		/// Массив значений света.
+		/// </summary>
 		public sbyte[] Light;
-		//массив тайлов.
+		
+		/// <summary>
+		/// Массив тайлов.
+		/// </summary>
 		public Tile[] tiles;
 
-		//количество тайлов по X
-		int Widht;
-		//количество тайлов по Y
-		int Heihgt;
-		public TileMap(int widht,int heihgt) 
+		/// <summary>
+		/// Ширина тайла мапа.
+		/// </summary>
+		uint Widht;
+		
+		/// <summary>
+		/// Высота тайл мапа.
+		/// </summary>
+		uint Heihgt;
+
+		/// <summary>
+		/// Создаёт новый тайл мап.
+		/// </summary>
+		/// <param name="widht">Ширина тайл мапа.</param>
+		/// <param name="heihgt">Высота тайл мапа.</param>
+		public TileMap(uint widht,uint heihgt) 
 		{
 			Widht = widht;
 			Heihgt = heihgt;
@@ -22,7 +38,10 @@ namespace DarkTown
 			Light = new sbyte[Widht * Heihgt];
 		}
 
-		//создаёт тайл мап присваивая занчение массивам 
+		/// <summary>
+		/// Присваевает значение Свету и тайлам.
+		/// </summary>
+		/// <param name="program">Экземляр класса Прогам</param>
 		public void GenerateTileMap(Program program)
 		{
 			for (int i = 0; i < tiles.Length; i++)

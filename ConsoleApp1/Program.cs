@@ -7,15 +7,31 @@ namespace DarkTown
 {
 	internal class Program
 	{
-		public static float OneUnitFactorWidth; // при умножении на него даёт 1/16 ширины экрана экрана
-		public static float OneUnitFactorHeight;// при умножении на него даёт 1/9 высоты экрана
+		/// <summary>
+		/// 1/16 ширины экрана в пикселях.
+		/// </summary>
+		public static float OneUnitFactorWidth; 
 
-		public static float OneUnit = 32; // размер в пикселях "еденично" разметки экрана
+		/// <summary>
+		/// 1/9 высоты экрана в пикселях.
+		/// </summary>
+		public static float OneUnitFactorHeight;
 
-		//Создание окна.
+		/// <summary>
+		/// Цена деления экрана.
+		/// </summary>
+		public static float OneUnit = 32; 
+
+		/// <summary>
+		/// Основное окно.
+		/// </summary>
 		public RenderWindow window = new(VideoMode.FullscreenModes[0],"Test",Styles.Fullscreen);
 
-		//Словарь текстур
+		/// <summary>
+		/// Словарь объектов где ключ это сторока, а значение - это класс Texture.
+		/// </summary>
+		/// <see cref="Texture"/>
+		/// <seealso cref="Dictionary{TKey, TValue}"/>
 		public Dictionary<string, Texture> texturesToName = new()
 		{
 			{"Back-1", new("Resurs\\Back-1.png")},
@@ -23,15 +39,25 @@ namespace DarkTown
 			{"Dark", new("Resurs\\Dark.png")}
 		};
 
-		//"слой" посути просто список объектов с интерфейсом.Нужет для вывода изоброжений на экран.
+		/// <summary>
+		/// Список объектов интерфейса Dwarable для вывода их на экран.
+		/// </summary>
+		/// <see cref="Drawable"/>
 		public List<Drawable> layer = new();
 
+		/// <summary>
+		/// Создание экземпляра Program.
+		/// </summary>
 		public Program()
 		{
 			//просто задаёт значение переменных
 			OneUnitFactorHeight = VideoMode.FullscreenModes[0].Height / (OneUnit * 9);
 			OneUnitFactorWidth = VideoMode.FullscreenModes[0].Width / (OneUnit * 16);
 		}
+
+		/// <summary>
+		/// Точка входа программы.
+		/// </summary>
 		static void Main()
 		{
 			//просто объект програм
@@ -55,7 +81,7 @@ namespace DarkTown
 			}*/
 
 			//подписка на все нужные события
-			program.window.Closed += program.close;
+			program.window.Closed += program.CloseWindow;
 			program.window.KeyPressed += program.ButtonPresed;
 			program.window.MouseButtonPressed += program.MouseDown;
 			//program.window.KeyPressed += Button;
@@ -79,21 +105,34 @@ namespace DarkTown
 			}
 		}
 
-		//оброботьчик нажатия кнопок мыши(в разроботке)
+		/// <summary>
+		/// Обрабатывает нажатие кнопок мыши(в разработке).
+		/// </summary>
+		/// <param name="sender">Объект который вызывает событие.</param>
+		/// <param name="mouse">Объект KeyEventArgs.</param>
 		void MouseDown(object? sender,MouseButtonEventArgs mouse)
 		{
 
 		}
 
-		//оброботьчик нажатия клавиш.
+		/// <summary>
+		/// Обрабатывает нажатия клавиш.
+		/// </summary>
+		/// <param name="sender">Объект который вызывает событие.</param>
+		/// <param name="keys">Объект KeyEventArgs.</param>
 		void ButtonPresed(object? sender, KeyEventArgs keys)
 		{
 			//если нажатая кравиша эскейп то закрыть окно. 
 			if (keys.Code == Keyboard.Key.Escape) window.Close();
 		}
-		
-		//закрывает окно при нажатии на крестик
-		void close(object? sender, EventArgs key)
+
+		/// <summary>
+		/// При вызове закрывает окно.
+		/// </summary>
+		/// <param name="sender">Объект который вызывает событие.</param>
+		/// <param name="key">Объект EventArgs.</param>
+		/// <see cref="EventArgs"/>
+		void CloseWindow(object? sender, EventArgs key)
 		{
 			window.Close();
 		}

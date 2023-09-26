@@ -9,23 +9,39 @@ namespace DarkTown
 {
 	internal class Tile : Drawable
 	{
-		//обьект заднего фона
+		/// <summary>
+		/// Объект класса BackGround.
+		/// </summary>
 		public BackGround backGround;
 
-		//значение от -128 до 127 для обозначение уровня освещения
+		/// <summary>
+		/// Уровень освещения тайла.
+		/// </summary>
 		public sbyte LightLevel;
 
-		//спрайт тьмы
+		/// <summary>
+		/// Спрайт тьмы.
+		/// </summary>
 		private Sprite dark;
-		//спрайт светлой тьмы
+		
+		/// <summary>
+		/// Спрайт светлой тьмы.
+		/// </summary>
 		private Sprite lightDark;
 
-		//мжножетель размера объекта (приватный)
+		/// <summary>
+		/// Приватый вектор размера тайла.
+		/// </summary>
 		SFML.System.Vector2f scale;
-		//публичное свойство множетеля размера
+		
+		/// <summary>
+		/// Свойство вектора размера тайла.
+		/// </summary>
+		/// <seealso cref="scale"/>
 		public SFML.System.Vector2f Scale 
 		{
 			get { return scale;}
+
 			//присвание занчений для подопечных объектов
 			set 
 			{	
@@ -35,9 +51,16 @@ namespace DarkTown
 				dark.Scale = value;
 			}
 		}
-		//приватная переменая позиции
+
+		/// <summary>
+		/// Приватный вектор позиции.
+		/// </summary>
 		SFML.System.Vector2f position;
-		//публичное свойство позиции
+
+		/// <summary>
+		/// Свойсто вектора позиции.
+		/// </summary>
+		/// <seealso cref="position"/>
 		public SFML.System.Vector2f Position
 		{
 			get { return position; }
@@ -51,6 +74,14 @@ namespace DarkTown
 			}
 		}
 
+		/// <summary>
+		/// Конструкто Program.
+		/// </summary>
+		/// <param name="back">Объект заднего фона.</param>
+		/// <param name="Scale">Вектор размерности тайла.</param>
+		/// <param name="Position">Вектор позиции тайла.</param>
+		/// <param name="dark">Текстура для создания спрайта тьмы.</param>
+		/// <param name="lightDark">Текстура для создания светлой тьмы.</param>
 		public Tile(BackGround back,SFML.System.Vector2f Scale,SFML.System.Vector2f Position,Texture dark,Texture lightDark)
 		{
 			backGround = back;
@@ -60,7 +91,12 @@ namespace DarkTown
 			this.Scale = Scale;
 			this.Position = Position;
 		}
-		//метод для отрисовки
+
+		/// <summary>
+		/// Отрисовывает тайл.
+		/// </summary>
+		/// <param name="target"></param>
+		/// <param name="states"></param>
 		public void Draw(RenderTarget target,RenderStates states)
 		{
 			backGround.Draw(target, states);

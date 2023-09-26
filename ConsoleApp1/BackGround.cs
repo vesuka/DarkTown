@@ -9,16 +9,29 @@ namespace DarkTown
 {
 	internal class BackGround : Drawable
 	{
-		//объект sprite для вывода изоброжение 
+		/// <summary>
+		/// Объект класса Sprite.
+		/// </summary>
+		/// <see cref="SFML.Graphics.Sprite"/>
 		private readonly Sprite sprite;
 
-		//свойство для публичного предстовление sprite
+		/// <summary>
+		/// Свойство объекта Sprite. Позволяет только считавать значение.
+		/// </summary>
 		public Sprite Sprite { get { return sprite; } }
+
+		/// <summary>
+		/// Создание экземпляра класса BackGround.
+		/// </summary>
+		/// <param name="texture">Текстура для создания спрайта.</param>
 		public BackGround(Texture texture)
 		{
 			sprite = new Sprite(texture);
 		}
-		// метод для вывода данных на экран
+
+		/// <summary>
+		/// Отрисовывает объект.
+		/// </summary>
 		public void Draw( RenderTarget target,RenderStates states)
 		{
 			sprite.Draw(target, states);
