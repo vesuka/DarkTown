@@ -9,6 +9,7 @@ namespace DarkTown
 {
 	internal class BackGround : Drawable
 	{
+		#region Fields
 		/// <summary>
 		/// Объект класса Sprite.
 		/// </summary>
@@ -19,7 +20,9 @@ namespace DarkTown
 		/// Свойство объекта Sprite. Позволяет только считавать значение.
 		/// </summary>
 		public Sprite Sprite { get { return sprite; } }
+		#endregion
 
+		#region Constructors
 		/// <summary>
 		/// Создание экземпляра класса BackGround.
 		/// </summary>
@@ -28,7 +31,9 @@ namespace DarkTown
 		{
 			sprite = new Sprite(texture);
 		}
+		#endregion
 
+		#region Methods
 		/// <summary>
 		/// Отрисовывает объект.
 		/// </summary>
@@ -36,5 +41,6 @@ namespace DarkTown
 		{
 			sprite.Draw(target, states);
 		}
+		#endregion
 	}
 }

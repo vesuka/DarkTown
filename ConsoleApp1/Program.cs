@@ -7,6 +7,7 @@ namespace DarkTown
 {
 	internal class Program
 	{
+		#region Fields
 		/// <summary>
 		/// 1/16 ширины экрана в пикселях.
 		/// </summary>
@@ -44,7 +45,9 @@ namespace DarkTown
 		/// </summary>
 		/// <see cref="Drawable"/>
 		public List<Drawable> layer = new();
+		#endregion
 
+		#region Constructors
 		/// <summary>
 		/// Создание экземпляра Program.
 		/// </summary>
@@ -54,7 +57,9 @@ namespace DarkTown
 			OneUnitFactorHeight = VideoMode.FullscreenModes[0].Height / (OneUnit * 9);
 			OneUnitFactorWidth = VideoMode.FullscreenModes[0].Width / (OneUnit * 16);
 		}
+		#endregion
 
+		#region Methods
 		/// <summary>
 		/// Точка входа программы.
 		/// </summary>
@@ -136,5 +141,6 @@ namespace DarkTown
 		{
 			window.Close();
 		}
+		#endregion
 	}
 }

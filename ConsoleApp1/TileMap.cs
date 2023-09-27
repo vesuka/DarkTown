@@ -5,6 +5,7 @@ namespace DarkTown
 {
 	internal class TileMap
 	{
+		#region Fields
 		/// <summary>
 		/// Массив значений света.
 		/// </summary>
@@ -24,7 +25,9 @@ namespace DarkTown
 		/// Высота тайл мапа.
 		/// </summary>
 		uint Heihgt;
+		#endregion
 
+		#region Constructors
 		/// <summary>
 		/// Создаёт новый тайл мап.
 		/// </summary>
@@ -37,7 +40,9 @@ namespace DarkTown
 			tiles = new Tile[Widht * Heihgt];
 			Light = new sbyte[Widht * Heihgt];
 		}
+		#endregion
 
+		#region Methods
 		/// <summary>
 		/// Присваевает значение Свету и тайлам.
 		/// </summary>
@@ -56,5 +61,6 @@ namespace DarkTown
 				program.layer.Add(tiles[i]);
 			}
 		}
+		#endregion
 	}
 }

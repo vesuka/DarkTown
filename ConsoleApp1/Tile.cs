@@ -9,6 +9,7 @@ namespace DarkTown
 {
 	internal class Tile : Drawable
 	{
+		#region
 		/// <summary>
 		/// Объект класса BackGround.
 		/// </summary>
@@ -32,8 +33,15 @@ namespace DarkTown
 		/// <summary>
 		/// Приватый вектор размера тайла.
 		/// </summary>
-		SFML.System.Vector2f scale;
-		
+		private SFML.System.Vector2f scale;
+
+		/// <summary>
+		/// Приватный вектор позиции.
+		/// </summary>
+		private SFML.System.Vector2f position;
+		#endregion
+
+		#region Properties
 		/// <summary>
 		/// Свойство вектора размера тайла.
 		/// </summary>
@@ -53,11 +61,6 @@ namespace DarkTown
 		}
 
 		/// <summary>
-		/// Приватный вектор позиции.
-		/// </summary>
-		SFML.System.Vector2f position;
-
-		/// <summary>
 		/// Свойсто вектора позиции.
 		/// </summary>
 		/// <seealso cref="position"/>
@@ -73,7 +76,9 @@ namespace DarkTown
 				dark.Position = value;
 			}
 		}
+		#endregion
 
+		#region Constructors
 		/// <summary>
 		/// Конструкто Program.
 		/// </summary>
@@ -91,7 +96,9 @@ namespace DarkTown
 			this.Scale = Scale;
 			this.Position = Position;
 		}
+		#endregion
 
+		#region Methods
 		/// <summary>
 		/// Отрисовывает тайл.
 		/// </summary>
@@ -104,5 +111,6 @@ namespace DarkTown
 			if(LightLevel <= 0) dark.Draw(target, states);
 			else if(LightLevel > 0 && LightLevel <=5) lightDark.Draw(target, states);
 		}
+		#endregion
 	}
 }
