@@ -1,8 +1,10 @@
 ﻿using SFML.System;
-using System;
 
 namespace DarkTown
 {
+	/// <summary>
+	/// Карта тайлов.
+	/// </summary>
 	internal class TileMap
 	{
 		#region Fields
@@ -19,12 +21,12 @@ namespace DarkTown
 		/// <summary>
 		/// Ширина тайла мапа.
 		/// </summary>
-		uint Widht;
+		readonly uint Widht;
 		
 		/// <summary>
 		/// Высота тайл мапа.
 		/// </summary>
-		uint Heihgt;
+		readonly uint Heihgt;
 		#endregion
 
 		#region Constructors
@@ -54,7 +56,7 @@ namespace DarkTown
 				tiles[i] = new Tile(
 					new BackGround(program.texturesToName["Back-1"]),
 					new Vector2f(Program.OneUnitFactorWidth, Program.OneUnitFactorHeight),
-					new Vector2f(i % Widht *Program.OneUnit * Program.OneUnitFactorWidth, i / Widht * Program.OneUnit * Program.OneUnitFactorHeight),
+					new Vector2f(i % Widht * Program.OneUnit * Program.OneUnitFactorWidth, i / Widht * Program.OneUnit * Program.OneUnitFactorHeight),
 					program.texturesToName["Dark"],
 					program.texturesToName["LightDark"]
 					);

@@ -1,19 +1,19 @@
 ﻿using SFML.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DarkTown
 {
+	/// <summary>
+	/// Единичный тайл.
+	/// </summary>
 	internal class Tile : Drawable
 	{
-		#region
+		#region Fields
 		/// <summary>
 		/// Объект класса BackGround.
 		/// </summary>
 		public BackGround backGround;
+
+		public Bild? bild;
 
 		/// <summary>
 		/// Уровень освещения тайла.
@@ -23,12 +23,12 @@ namespace DarkTown
 		/// <summary>
 		/// Спрайт тьмы.
 		/// </summary>
-		private Sprite dark;
+		private readonly Sprite dark;
 		
 		/// <summary>
 		/// Спрайт светлой тьмы.
 		/// </summary>
-		private Sprite lightDark;
+		private readonly Sprite lightDark;
 
 		/// <summary>
 		/// Приватый вектор размера тайла.
@@ -107,6 +107,7 @@ namespace DarkTown
 		public void Draw(RenderTarget target,RenderStates states)
 		{
 			backGround.Draw(target, states);
+			bild?.Draw(target, states);
 
 			if(LightLevel <= 0) dark.Draw(target, states);
 			else if(LightLevel > 0 && LightLevel <=5) lightDark.Draw(target, states);

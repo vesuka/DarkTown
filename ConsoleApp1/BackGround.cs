@@ -1,12 +1,10 @@
 ﻿using SFML.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DarkTown
 {
+	/// <summary>
+	/// Класс заднего фона для тайлов.
+	/// </summary>
 	internal class BackGround : Drawable
 	{
 		#region Fields

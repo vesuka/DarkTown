@@ -1,10 +1,12 @@
 ﻿using SFML.Graphics;
 using SFML.Window;
-using SFML.System;
 using System;
 using System.Collections.Generic;
 namespace DarkTown
 {
+	/// <summary>
+	/// Класс программы.Хранит поля для игры и работы движка.
+	/// </summary>
 	internal class Program
 	{
 		#region Fields
@@ -66,24 +68,11 @@ namespace DarkTown
 		static void Main()
 		{
 			//просто объект програм
-			Program program = new Program();
+			Program program = new();
 
 			//класс нужный для создания набора плиток и коректного их отоброжения.
-			TileMap tileMap = new TileMap(16, 3);
+			TileMap tileMap = new (16, 3);
 			tileMap.GenerateTileMap(program);
-
-			//НЕ нужный код. Но может пригодиться.
-			/*void Button(object? sender, KeyEventArgs e)
-			{
-				if(e.Code == Keyboard.Key.Enter)
-				{
-					for(int i = 0; i < tileMap.Light.Length; i++)
-					{
-						tileMap.Light[i]++;
-						tileMap.tiles[i].LightLevel = tileMap.Light[i];
-					}
-				}
-			}*/
 
 			//подписка на все нужные события
 			program.window.Closed += program.CloseWindow;
