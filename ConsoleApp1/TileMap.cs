@@ -54,11 +54,11 @@ namespace DarkTown
 			for (int i = 0; i < tiles.Length; i++)
 			{
 				tiles[i] = new Tile(
-					new BackGround(program.texturesToName["Back-1"]),
-					new Vector2f(Program.OneUnitFactorWidth, Program.OneUnitFactorHeight),
-					new Vector2f(i % Widht * Program.OneUnit * Program.OneUnitFactorWidth, i / Widht * Program.OneUnit * Program.OneUnitFactorHeight),
-					program.texturesToName["Dark"],
-					program.texturesToName["LightDark"]
+					new BackGround(program.texturesToName["Back-1.png"]),
+					new Vector2f(program.OneUnitFactorWidth, program.OneUnitFactorHeight),
+					new Vector2f(i % Widht * program.OneUnit * program.OneUnitFactorWidth, i / Widht * program.OneUnit * program.OneUnitFactorHeight),
+					program.texturesToName["Dark.png"],	
+					program.texturesToName["partOfDarkness-export.png"]
 					);
 				program.layer.Add(tiles[i]);
 			}

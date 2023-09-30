@@ -2,6 +2,7 @@
 using SFML.Window;
 using System;
 using System.Collections.Generic;
+using System.IO;
 namespace DarkTown
 {
 	/// <summary>
@@ -13,17 +14,17 @@ namespace DarkTown
 		/// <summary>
 		/// 1/16 ширины экрана в пикселях.
 		/// </summary>
-		public static float OneUnitFactorWidth; 
+		public float OneUnitFactorWidth; 
 
 		/// <summary>
 		/// 1/9 высоты экрана в пикселях.
 		/// </summary>
-		public static float OneUnitFactorHeight;
+		public float OneUnitFactorHeight;
 
 		/// <summary>
 		/// Цена деления экрана.
 		/// </summary>
-		public static float OneUnit = 32; 
+		public float OneUnit = 32; 
 
 		/// <summary>
 		/// Основное окно.
@@ -35,12 +36,7 @@ namespace DarkTown
 		/// </summary>
 		/// <see cref="Texture"/>
 		/// <seealso cref="Dictionary{TKey, TValue}"/>
-		public Dictionary<string, Texture> texturesToName = new()
-		{
-			{"Back-1", new("Resurs\\Back-1.png")},
-			{"LightDark", new("Resurs\\partOfDarkness-export.png")},
-			{"Dark", new("Resurs\\Dark.png")}
-		};
+		public Dictionary<string, Texture> texturesToName = new();
 
 		/// <summary>
 		/// Список объектов интерфейса Dwarable для вывода их на экран.
@@ -58,6 +54,13 @@ namespace DarkTown
 			//просто задаёт значение переменных
 			OneUnitFactorHeight = VideoMode.FullscreenModes[0].Height / (OneUnit * 9);
 			OneUnitFactorWidth = VideoMode.FullscreenModes[0].Width / (OneUnit * 16);
+			string[] files = Directory.GetFiles("Resurs","*.png");
+			
+			for(int i = 0;  i < files.Length; i++)
+			{
+				FileInfo info = new(files[i]);
+				texturesToName.Add(info.Name, new Texture(files[i]));
+			}
 		}
 		#endregion
 
