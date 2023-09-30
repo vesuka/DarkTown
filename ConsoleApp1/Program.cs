@@ -70,36 +70,47 @@ namespace DarkTown
 		/// </summary>
 		static void Main()
 		{
-			//просто объект програм
-			Program program = new();
-
-			//класс нужный для создания набора плиток и коректного их отоброжения.
-			TileMap tileMap = new (16, 3);
-			tileMap.GenerateTileMap(program);
-
-			//подписка на все нужные события
-			program.window.Closed += program.CloseWindow;
-			program.window.KeyPressed += program.ButtonPresed;
-			program.window.MouseButtonPressed += program.MouseDown;
-			//program.window.KeyPressed += Button;
-			program.window.SetVerticalSyncEnabled(true);
-
-
-			//основной цикл программы
-			while (program.window.IsOpen)
+			try
 			{
-				//нужная сточка для вызова всех событий
-				program.window.DispatchEvents();
-				
-				// очистка ока и заливка в синий
-				program.window.Clear(Color.Blue);
+				//просто объект програм
+				Program program = new();
 
-				//отрисовка всех объектов
-				for (int i = 0; i < program.layer.Count; i++) program.window.Draw(program.layer[i]);
 
-				//сброс буфера на экран(сложная штука)
-				program.window.Display();
+				//класс нужный для создания набора плиток и коректного их отоброжения.
+				TileMap tileMap = new(16, 3);
+				tileMap.GenerateTileMap(program);
+
+				//подписка на все нужные события
+				program.window.Closed += program.CloseWindow;
+				program.window.KeyPressed += program.ButtonPresed;
+				program.window.MouseButtonPressed += program.MouseDown;
+				//program.window.KeyPressed += Button;
+				program.window.SetVerticalSyncEnabled(true);
+
+
+				//основной цикл программы
+				while (program.window.IsOpen)
+				{
+					//нужная сточка для вызова всех событий
+					program.window.DispatchEvents();
+
+					// очистка ока и заливка в синий
+					program.window.Clear(Color.Blue);
+
+					//отрисовка всех объектов
+					for (int i = 0; i < program.layer.Count; i++) program.window.Draw(program.layer[i]);
+
+					//сброс буфера на экран(сложная штука)
+					program.window.Display();
+				}
 			}
+			catch (Exception e)
+			{
+				Loger.Log(e);
+			}
+
+			//Сохранение данных лога.
+			Loger.Save("Log.txt");
 		}
 
 		/// <summary>
