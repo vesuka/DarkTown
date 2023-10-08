@@ -5,7 +5,7 @@ using System.IO;
 namespace DarkTown
 {
 
-	public static class Loger
+	public static class Logger
 	{
 		private static string logData = "";
 

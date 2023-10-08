@@ -17,19 +17,19 @@
     <None Update="Data.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resurs\Back-1.png">
+    <None Update="Resources\Back-1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resurs\Dark.png">
+    <None Update="Resources\Dark.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resurs\FlashLight-1.png">
+    <None Update="Resources\FlashLight-1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resurs\partOfDarkness-export.png">
+    <None Update="Resources\partOfDarkness-export.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resurs\TownHall.png">
+    <None Update="Resources\TownHall.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

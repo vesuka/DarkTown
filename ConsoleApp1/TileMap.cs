@@ -19,36 +19,36 @@ namespace DarkTown
 		public Tile[] tiles;
 
 		/// <summary>
-		/// Ширина тайла мапа.
+		/// Ширина карты тайлов.
 		/// </summary>
-		readonly uint Widht;
+		readonly uint Width;
 
 		/// <summary>
-		/// Высота тайл мапа.
+		/// Высота карты тайлов.
 		/// </summary>
-		readonly uint Heihgt;
+		readonly uint Height;
 		#endregion
 
 		#region Constructors
 		/// <summary>
-		/// Создаёт новый тайл мап.
+		/// Создаёт новый карты тайлов.
 		/// </summary>
-		/// <param name="widht">Ширина тайл мапа.</param>
-		/// <param name="heihgt">Высота тайл мапа.</param>
-		public TileMap(uint widht, uint heihgt)
+		/// <param name="width">Ширина карты тайлов.</param>
+		/// <param name="height">Высота карты тайлов.</param>
+		public TileMap(uint width, uint height)
 		{
-			Widht = widht;
-			Heihgt = heihgt;
-			tiles = new Tile[Widht * Heihgt];
-			Light = new sbyte[Widht * Heihgt];
+			Width = width;
+			Height = height;
+			tiles = new Tile[Width * Height];
+			Light = new sbyte[Width * Height];
 		}
 		#endregion
 
 		#region Methods
 		/// <summary>
-		/// Присваевает значение Свету и тайлам.
+		/// Присваивает значение свету и тайлам.
 		/// </summary>
-		/// <param name="program">Экземляр класса Прогам</param>
+		/// <param name="program">Экземпляр класса Program</param>
 		public void GenerateTileMap(Program program)
 		{
 			for (int i = 0; i < tiles.Length; i++)
@@ -56,7 +56,7 @@ namespace DarkTown
 				tiles[i] = new Tile(
 					new BackGround(program.texturesToName["Back-1.png"]),
 					new Vector2f(program.OneUnitFactorWidth, program.OneUnitFactorHeight),
-					new Vector2f(i % Widht * program.OneUnit * program.OneUnitFactorWidth, i / Widht * program.OneUnit * program.OneUnitFactorHeight),
+					new Vector2f(i % Width * program.OneUnit * program.OneUnitFactorWidth, i / Width * program.OneUnit * program.OneUnitFactorHeight),
 					program.texturesToName["Dark.png"],
 					program.texturesToName["partOfDarkness-export.png"]
 					);

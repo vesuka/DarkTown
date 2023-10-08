@@ -13,7 +13,7 @@ namespace DarkTown
 		/// </summary>
 		public BackGround backGround;
 
-		public Bild? bild;
+		public Bild? building;
 
 		/// <summary>
 		/// Уровень освещения тайла.
@@ -31,7 +31,7 @@ namespace DarkTown
 		private readonly Sprite lightDark;
 
 		/// <summary>
-		/// Приватый вектор размера тайла.
+		/// Приватный вектор размера тайла.
 		/// </summary>
 		private SFML.System.Vector2f scale;
 
@@ -50,7 +50,7 @@ namespace DarkTown
 		{
 			get { return scale; }
 
-			//присвание занчений для подопечных объектов
+			//присваивание значений для подопечных объектов
 			set
 			{
 				scale = value;
@@ -61,13 +61,13 @@ namespace DarkTown
 		}
 
 		/// <summary>
-		/// Свойсто вектора позиции.
+		/// Свойство вектора позиции.
 		/// </summary>
 		/// <seealso cref="position"/>
 		public SFML.System.Vector2f Position
 		{
 			get { return position; }
-			//присвание занчений для подопечных объектов
+			//присваивание значений для подопечных объектов
 			set
 			{
 				position = value;
@@ -80,7 +80,7 @@ namespace DarkTown
 
 		#region Constructors
 		/// <summary>
-		/// Конструкто Program.
+		/// Конструктор Program.
 		/// </summary>
 		/// <param name="back">Объект заднего фона.</param>
 		/// <param name="Scale">Вектор размерности тайла.</param>
@@ -107,7 +107,7 @@ namespace DarkTown
 		public void Draw(RenderTarget target, RenderStates states)
 		{
 			backGround.Draw(target, states);
-			bild?.Draw(target, states);
+			building?.Draw(target, states);
 
 			if (LightLevel <= 0) dark.Draw(target, states);
 			else if (LightLevel > 0 && LightLevel <= 5) lightDark.Draw(target, states);

@@ -15,17 +15,17 @@ namespace DarkTown
 		private readonly Sprite sprite;
 
 		/// <summary>
-		/// Экзампляры интрефейса. Отрисовываються.
+		/// Экземпляры интерфейса. Отрисовываются.
 		/// </summary>
 		public IUpdates[]? updates;
 
 		/// <summary>
-		/// Локальная перемерная размера.
+		/// Локальная переменная размера.
 		/// </summary>
 		private SFML.System.Vector2f scale;
 
 		/// <summary>
-		/// Локальная позицая позции.
+		/// Локальная позиция объекта.
 		/// </summary>
 		private SFML.System.Vector2f position;
 
@@ -34,11 +34,11 @@ namespace DarkTown
 		#region Properties
 
 		/// <summary>
-		/// Считатавыет спрайт.
+		/// Считывает спрайт.
 		/// </summary>
 		public Sprite Sprite { get { return sprite; } }
 		/// <summary>
-		/// Свойство позции.
+		/// Свойство позиции.
 		/// </summary>
 		public SFML.System.Vector2f Position
 		{
@@ -74,7 +74,7 @@ namespace DarkTown
 		/// <summary>
 		/// Конструктор. Определяет все поля.
 		/// </summary>
-		/// <param name="texture">Текстура для созданеия спрайта.</param>
+		/// <param name="texture">Текстура для создания спрайта.</param>
 		/// <param name="updates">Экземпляры интерфейса.</param>
 		public Bild(Texture texture, IUpdates[]? updates)
 		{

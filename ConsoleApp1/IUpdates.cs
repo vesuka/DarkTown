@@ -3,7 +3,7 @@
 namespace DarkTown
 {
 	/// <summary>
-	/// Обновляймый интерфейс.
+	/// Обновляемый интерфейс.
 	/// </summary>
 	internal interface IUpdates : Drawable
 	{

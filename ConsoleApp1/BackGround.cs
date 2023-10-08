@@ -14,11 +14,12 @@ namespace DarkTown
 		/// <see cref="SFML.Graphics.Sprite"/>
 		private readonly Sprite sprite;
 
+		
 		/// <summary>
-		/// Свойство объекта Sprite. Позволяет только считавать значение.
+		/// Свойство объекта Sprite. Позволяет только считывать значение.
 		/// </summary>
 		public Sprite Sprite { get { return sprite; } }
-		#endregion
+		#endregion 
 
 		#region Constructors
 		/// <summary>
