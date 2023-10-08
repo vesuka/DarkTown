@@ -4,11 +4,11 @@ using System.IO;
 
 namespace DarkTown
 {
-	
+
 	public static class Loger
 	{
-		private static string logData = ""; 
-		
+		private static string logData = "";
+
 		/// <summary>
 		/// Выводит данные.
 		/// </summary>

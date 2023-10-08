@@ -24,7 +24,7 @@ namespace DarkTown
 		/// Спрайт тьмы.
 		/// </summary>
 		private readonly Sprite dark;
-		
+
 		/// <summary>
 		/// Спрайт светлой тьмы.
 		/// </summary>
@@ -46,13 +46,13 @@ namespace DarkTown
 		/// Свойство вектора размера тайла.
 		/// </summary>
 		/// <seealso cref="scale"/>
-		public SFML.System.Vector2f Scale 
+		public SFML.System.Vector2f Scale
 		{
-			get { return scale;}
+			get { return scale; }
 
 			//присвание занчений для подопечных объектов
-			set 
-			{	
+			set
+			{
 				scale = value;
 				backGround.Sprite.Scale = value;
 				lightDark.Scale = value;
@@ -69,9 +69,9 @@ namespace DarkTown
 			get { return position; }
 			//присвание занчений для подопечных объектов
 			set
-			{ 
+			{
 				position = value;
-				backGround.Sprite.Position = value; 
+				backGround.Sprite.Position = value;
 				lightDark.Position = value;
 				dark.Position = value;
 			}
@@ -87,7 +87,7 @@ namespace DarkTown
 		/// <param name="Position">Вектор позиции тайла.</param>
 		/// <param name="dark">Текстура для создания спрайта тьмы.</param>
 		/// <param name="lightDark">Текстура для создания светлой тьмы.</param>
-		public Tile(BackGround back,SFML.System.Vector2f Scale,SFML.System.Vector2f Position,Texture dark,Texture lightDark)
+		public Tile(BackGround back, SFML.System.Vector2f Scale, SFML.System.Vector2f Position, Texture dark, Texture lightDark)
 		{
 			backGround = back;
 			this.dark = new Sprite(dark);
@@ -104,13 +104,13 @@ namespace DarkTown
 		/// </summary>
 		/// <param name="target"></param>
 		/// <param name="states"></param>
-		public void Draw(RenderTarget target,RenderStates states)
+		public void Draw(RenderTarget target, RenderStates states)
 		{
 			backGround.Draw(target, states);
 			bild?.Draw(target, states);
 
-			if(LightLevel <= 0) dark.Draw(target, states);
-			else if(LightLevel > 0 && LightLevel <=5) lightDark.Draw(target, states);
+			if (LightLevel <= 0) dark.Draw(target, states);
+			else if (LightLevel > 0 && LightLevel <= 5) lightDark.Draw(target, states);
 		}
 		#endregion
 	}

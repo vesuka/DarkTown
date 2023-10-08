@@ -35,7 +35,7 @@ namespace DarkTown
 		/// <summary>
 		/// Отрисовывает объект.
 		/// </summary>
-		public void Draw( RenderTarget target,RenderStates states)
+		public void Draw(RenderTarget target, RenderStates states)
 		{
 			sprite.Draw(target, states);
 		}

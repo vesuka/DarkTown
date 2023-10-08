@@ -14,7 +14,7 @@ namespace DarkTown
 		/// <summary>
 		/// 1/16 ширины экрана в пикселях.
 		/// </summary>
-		public float OneUnitFactorWidth; 
+		public float OneUnitFactorWidth;
 
 		/// <summary>
 		/// 1/9 высоты экрана в пикселях.
@@ -24,12 +24,12 @@ namespace DarkTown
 		/// <summary>
 		/// Цена деления экрана.
 		/// </summary>
-		public float OneUnit = 32; 
+		public float OneUnit = 32;
 
 		/// <summary>
 		/// Основное окно.
 		/// </summary>
-		public RenderWindow window = new(VideoMode.FullscreenModes[0],"Test",Styles.Fullscreen);
+		public RenderWindow window = new(VideoMode.FullscreenModes[0], "Test", Styles.Fullscreen);
 
 		/// <summary>
 		/// Словарь объектов где ключ это сторока, а значение - это класс Texture.
@@ -54,9 +54,9 @@ namespace DarkTown
 			//просто задаёт значение переменных
 			OneUnitFactorHeight = VideoMode.FullscreenModes[0].Height / (OneUnit * 9);
 			OneUnitFactorWidth = VideoMode.FullscreenModes[0].Width / (OneUnit * 16);
-			string[] files = Directory.GetFiles("Resurs","*.png");
-			
-			for(int i = 0;  i < files.Length; i++)
+			string[] files = Directory.GetFiles("Resurs", "*.png");
+
+			for (int i = 0; i < files.Length; i++)
 			{
 				FileInfo info = new(files[i]);
 				texturesToName.Add(info.Name, new Texture(files[i]));
@@ -118,7 +118,7 @@ namespace DarkTown
 		/// </summary>
 		/// <param name="sender">Объект который вызывает событие.</param>
 		/// <param name="mouse">Объект KeyEventArgs.</param>
-		void MouseDown(object? sender,MouseButtonEventArgs mouse)
+		void MouseDown(object? sender, MouseButtonEventArgs mouse)
 		{
 
 		}

@@ -36,16 +36,16 @@ namespace DarkTown
 		/// <summary>
 		/// Считатавыет спрайт.
 		/// </summary>
-		public Sprite Sprite { get {return sprite; } }
+		public Sprite Sprite { get { return sprite; } }
 		/// <summary>
 		/// Свойство позции.
 		/// </summary>
-		public SFML.System.Vector2f Position 
-		{ 
-			get 
-			{ 
+		public SFML.System.Vector2f Position
+		{
+			get
+			{
 				return position;
-			} 
+			}
 			set
 			{
 				position = value;
@@ -56,11 +56,11 @@ namespace DarkTown
 		/// Свойство размера.
 		/// </summary>
 		public SFML.System.Vector2f Scale
-		{ 
-			get 
-			{ 
-				return scale; 
-			} 
+		{
+			get
+			{
+				return scale;
+			}
 			set
 			{
 				scale = value;
@@ -89,10 +89,10 @@ namespace DarkTown
 		/// </summary>
 		/// <param name="target"></param>
 		/// <param name="states"></param>
-		public void Draw(RenderTarget target,RenderStates states)
+		public void Draw(RenderTarget target, RenderStates states)
 		{
 			sprite.Draw(target, states);
-			for(int i = 0; i < updates?.Length; i++) updates[i].Draw(target,states); 
+			for (int i = 0; i < updates?.Length; i++) updates[i].Draw(target, states);
 		}
 		#endregion
 	}

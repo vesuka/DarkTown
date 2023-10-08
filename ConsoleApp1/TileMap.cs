@@ -12,7 +12,7 @@ namespace DarkTown
 		/// Массив значений света.
 		/// </summary>
 		public sbyte[] Light;
-		
+
 		/// <summary>
 		/// Массив тайлов.
 		/// </summary>
@@ -22,7 +22,7 @@ namespace DarkTown
 		/// Ширина тайла мапа.
 		/// </summary>
 		readonly uint Widht;
-		
+
 		/// <summary>
 		/// Высота тайл мапа.
 		/// </summary>
@@ -35,7 +35,7 @@ namespace DarkTown
 		/// </summary>
 		/// <param name="widht">Ширина тайл мапа.</param>
 		/// <param name="heihgt">Высота тайл мапа.</param>
-		public TileMap(uint widht,uint heihgt) 
+		public TileMap(uint widht, uint heihgt)
 		{
 			Widht = widht;
 			Heihgt = heihgt;
@@ -57,7 +57,7 @@ namespace DarkTown
 					new BackGround(program.texturesToName["Back-1.png"]),
 					new Vector2f(program.OneUnitFactorWidth, program.OneUnitFactorHeight),
 					new Vector2f(i % Widht * program.OneUnit * program.OneUnitFactorWidth, i / Widht * program.OneUnit * program.OneUnitFactorHeight),
-					program.texturesToName["Dark.png"],	
+					program.texturesToName["Dark.png"],
 					program.texturesToName["partOfDarkness-export.png"]
 					);
 				program.layer.Add(tiles[i]);
