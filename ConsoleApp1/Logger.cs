@@ -15,7 +15,7 @@ namespace DarkTown
 		/// <param name="data">Объект логирования.</param>
 		public static void Log(object? data)
 		{
-			logData += $"time:{DateTime.Now};Data:{data?.ToString()};process:{Process.GetCurrentProcess().ProcessName}";
+			logData += $"Data:{data ?? "Null"}; time:{DateTime.Now}; process:{Process.GetCurrentProcess().ProcessName}";
 			logData += Environment.NewLine;
 		}
 
