@@ -2,7 +2,6 @@
 using SFML.Window;
 using System;
 using System.Collections.Generic;
-using System.IO;
 namespace DarkTown
 {
 	/// <summary>
@@ -32,13 +31,6 @@ namespace DarkTown
 		public readonly RenderWindow window = new(VideoMode.FullscreenModes[0], "Test", Styles.Fullscreen);
 
 		/// <summary>
-		/// Словарь объектов где ключ это строка, а значение - это класс Texture.
-		/// </summary>
-		/// <see cref="Texture"/>
-		/// <seealso cref="Dictionary{TKey, TValue}"/>
-		public readonly Dictionary<string, Texture> texturesToName = new();
-
-		/// <summary>
 		/// Список объектов интерфейса Drawable для вывода их на экран.
 		/// </summary>
 		/// <see cref="Drawable"/>
@@ -54,13 +46,7 @@ namespace DarkTown
 			//просто задаёт значение переменных
 			OneUnitFactorHeight = VideoMode.FullscreenModes[0].Height / (OneUnit * 9);
 			OneUnitFactorWidth = VideoMode.FullscreenModes[0].Width / (OneUnit * 16);
-			string[] files = Directory.GetFiles("Resources", "*.png");
 
-			for (int i = 0; i < files.Length; i++)
-			{
-				FileInfo info = new(files[i]);
-				texturesToName.Add(info.Name, new Texture(files[i]));
-			}
 		}
 		#endregion
 
@@ -75,10 +61,9 @@ namespace DarkTown
 				//просто объект Program
 				Program program = new();
 
-
-				//класс нужный для создания набора плиток и корректного их отображения.
-				TileMap tileMap = new(16, 3);
-				tileMap.GenerateTileMap(program);
+				//Загрузка набора плиток.
+				TileMap tileMap = LoaderDDt.LoadItem<TileMap>("Worlds\\DebugWorld\\Map.ddt");
+				program.layer.AddRange(tileMap.tiles);
 
 				//подписка на все нужные события
 				program.window.Closed += program.CloseWindow;

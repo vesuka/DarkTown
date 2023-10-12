@@ -1,11 +1,13 @@
 ﻿using SFML.System;
+using System;
+using System.IO;
 
 namespace DarkTown
 {
 	/// <summary>
 	/// Карта тайлов.
 	/// </summary>
-	internal class TileMap
+	internal class TileMap : LoaderDDt.ILoadedDDt
 	{
 		#region Fields
 		/// <summary>
@@ -42,6 +44,14 @@ namespace DarkTown
 			tiles = new Tile[Width * Height];
 			Light = new sbyte[Width * Height];
 		}
+
+		public TileMap()
+		{
+			Width = 0; Height = 0;
+			tiles = Array.Empty<Tile>();
+			Light = Array.Empty<sbyte>();
+
+		}
 		#endregion
 
 		#region Methods
@@ -54,14 +64,24 @@ namespace DarkTown
 			for (int i = 0; i < tiles.Length; i++)
 			{
 				tiles[i] = new Tile(
-					new BackGround(program.texturesToName["Back-1.png"]),
+					Resources.texturesToName["Back-1.png"],
 					new Vector2f(program.OneUnitFactorWidth, program.OneUnitFactorHeight),
 					new Vector2f(i % Width * program.OneUnit * program.OneUnitFactorWidth, i / Width * program.OneUnit * program.OneUnitFactorHeight),
-					program.texturesToName["Dark.png"],
-					program.texturesToName["partOfDarkness-export.png"]
+					Resources.texturesToName["Dark.png"],
+					Resources.texturesToName["partOfDarkness-export.png"]
 					);
 				program.layer.Add(tiles[i]);
 			}
+		}
+
+		public void Load(BinaryReader binaryReader)
+		{
+			tiles = LoaderDDt.LoadItems<Tile>(binaryReader, binaryReader.ReadInt32());
+		}
+		public void Save(BinaryWriter binaryWriter)
+		{
+			binaryWriter.Write(tiles.Length);
+			LoaderDDt.SaveItems(tiles, binaryWriter);
 		}
 		#endregion
 	}

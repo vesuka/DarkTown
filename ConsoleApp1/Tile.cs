@@ -1,17 +1,15 @@
 ﻿using SFML.Graphics;
+using System.IO;
+using System.Linq.Expressions;
 
 namespace DarkTown
 {
 	/// <summary>
 	/// Единичный тайл.
 	/// </summary>
-	internal class Tile : Drawable
+	internal class Tile : Drawable , LoaderDDt.ILoadedDDt
 	{
 		#region Fields
-		/// <summary>
-		/// Объект класса BackGround.
-		/// </summary>
-		public BackGround backGround;
 
 		public Bild? building;
 
@@ -29,6 +27,11 @@ namespace DarkTown
 		/// Спрайт светлой тьмы.
 		/// </summary>
 		private readonly Sprite lightDark;
+
+		/// <summary>
+		/// Объект класса BackGround.
+		/// </summary>
+		public readonly Sprite backGround;
 
 		/// <summary>
 		/// Приватный вектор размера тайла.
@@ -54,7 +57,7 @@ namespace DarkTown
 			set
 			{
 				scale = value;
-				backGround.Sprite.Scale = value;
+				backGround.Scale = value;
 				lightDark.Scale = value;
 				dark.Scale = value;
 			}
@@ -71,13 +74,13 @@ namespace DarkTown
 			set
 			{
 				position = value;
-				backGround.Sprite.Position = value;
+				backGround.Position = value;
 				lightDark.Position = value;
 				dark.Position = value;
 			}
 		}
 		#endregion
-
+		
 		#region Constructors
 		/// <summary>
 		/// Конструктор Program.
@@ -87,14 +90,21 @@ namespace DarkTown
 		/// <param name="Position">Вектор позиции тайла.</param>
 		/// <param name="dark">Текстура для создания спрайта тьмы.</param>
 		/// <param name="lightDark">Текстура для создания светлой тьмы.</param>
-		public Tile(BackGround back, SFML.System.Vector2f Scale, SFML.System.Vector2f Position, Texture dark, Texture lightDark)
+		public Tile(Texture back, SFML.System.Vector2f Scale, SFML.System.Vector2f Position, Texture dark, Texture lightDark)
 		{
-			backGround = back;
+			backGround = new Sprite(back);
 			this.dark = new Sprite(dark);
 			this.lightDark = new Sprite(lightDark);
 
 			this.Scale = Scale;
 			this.Position = Position;
+		}
+		
+		public Tile()
+		{
+			backGround = new Sprite();
+			dark = new Sprite();
+			lightDark = new Sprite();
 		}
 		#endregion
 
@@ -111,6 +121,28 @@ namespace DarkTown
 
 			if (LightLevel <= 0) dark.Draw(target, states);
 			else if (LightLevel > 0 && LightLevel <= 5) lightDark.Draw(target, states);
+		}
+
+		public void Load(BinaryReader binaryReader)
+		{
+			backGround.Texture = Resources.texturesToName[binaryReader.ReadString()];
+			lightDark.Texture = Resources.texturesToName[binaryReader.ReadString()];
+			dark.Texture = Resources.texturesToName[binaryReader.ReadString()];
+
+			Position = new SFML.System.Vector2f(binaryReader.ReadSingle(), binaryReader.ReadSingle());
+			Scale = new SFML.System.Vector2f(binaryReader.ReadSingle(), binaryReader.ReadSingle());
+		}
+		public void Save(BinaryWriter binaryWriter)
+		{
+			binaryWriter.Write(Resources.GetNameTexture(backGround.Texture));
+			binaryWriter.Write(Resources.GetNameTexture(lightDark.Texture));
+			binaryWriter.Write(Resources.GetNameTexture(dark.Texture));
+
+			binaryWriter.Write(position.X);
+			binaryWriter.Write(position.Y);
+
+			binaryWriter.Write(scale.X);
+			binaryWriter.Write(scale.Y);
 		}
 		#endregion
 	}

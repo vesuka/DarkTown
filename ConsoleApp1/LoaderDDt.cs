@@ -72,6 +72,42 @@ namespace DarkTown
 			return items.ToArray();
 		}
 
+		/// <summary>
+		/// Загружает массив элементов из файла.
+		/// </summary>
+		/// <typeparam name="Item">Тип читаемый из файла.</typeparam>
+		/// <param name="path">Путь к файлу.</param>
+		/// <param name="count">Количество загружаемых объектов.</param>
+		/// <returns>Массив Item.</returns>
+		public static Item[] LoadItems<Item>(string path,int count) where Item : ILoadedDDt, new()
+		{
+			using BinaryReader binaryReader = new(File.OpenRead(path));
+			Item[] items = new Item[count];
+			for(int i = 0; i < count; i++)
+			{
+				items[i] = LoadItem<Item>(path);
+			}
+			binaryReader.Close();
+			return items;
+		}
+
+		/// <summary>
+		/// Загружает массив элементов из файла.
+		/// </summary>
+		/// <typeparam name="Item">Тип читаемый из файла.</typeparam>
+		/// <param name="reader">Чтец.</param>
+		/// <param name="count">Количество загружаемых объектов.</param>
+		/// <returns>Массив Item.</returns>
+		public static Item[] LoadItems<Item>(BinaryReader reader,int count)where Item : ILoadedDDt, new()
+		{
+			Item[] items = new Item[count];
+			for (int i = 0; i < count; i++)
+			{
+				items[i] =(LoadItem<Item>(reader));
+			}
+			return items;
+		}
+
 
 
 		/// <summary>

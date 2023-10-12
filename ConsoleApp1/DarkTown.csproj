@@ -32,6 +32,13 @@
     <None Update="Resources\TownHall.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Worlds\DebugWorld\Map.ddt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Worlds\DebugWorld\" />
   </ItemGroup>
 
 </Project>
