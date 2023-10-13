@@ -171,8 +171,7 @@ namespace DarkTown
 
 		#region Template load and save.
 
-		// перегрузки Item LoadItemWithTemplate.
-
+		#region Item LoadItemWithTemplate
 		/// <summary>
 		/// Загружает элемент из файла. Считывает и загружает по шаблону. 
 		/// </summary>
@@ -195,7 +194,7 @@ namespace DarkTown
 		/// <param name="path">Путь к файлу.</param>
 		/// <param name="template">Шаблон</param>
 		/// <returns>Экземпляр обобщенного типа.</returns>
-		public static Item LoadItemWithTemplate<Item>(string path,string template) where Item : ILoadedDDt, new()
+		public static Item LoadItemWithTemplate<Item>(string path, string template) where Item : ILoadedDDt, new()
 		{
 			using BinaryReader binaryReader = new(File.OpenRead(path));
 			Item item = new();
@@ -224,15 +223,33 @@ namespace DarkTown
 		/// <param name="reader">Чтец.</param>
 		/// <param name="template">Шаблон.</param>
 		/// <returns></returns>
-		public static Item LoadItemWithTemplate<Item>(BinaryReader reader,string template) where Item : ILoadedDDt, new()
+		public static Item LoadItemWithTemplate<Item>(BinaryReader reader, string template) where Item : ILoadedDDt, new()
 		{
 			Item item = new();
 			item.LoadWithTemplate(reader, template);
 			return item;
 		}
+		#endregion
 
-		//перегрузки Item[] LoadItemsWithTemplate.
+		#region Item LoadItemWithStandardTemplate
+		public static Item LoadItemWithStandardTemplate<Item>(string path) where Item : ILoadedDDt, new()
+		{
+			using BinaryReader binaryReader = new(File.OpenRead(path));
+			Item item = new();
+			item.LoadWithTemplate(binaryReader, item.GetTemplate());
+			binaryReader.Close();
+			return item;
+		}
 
+		public static Item LoadItemWithStandardTemplate<Item>(BinaryReader reader) where Item : ILoadedDDt, new()
+		{
+			Item item = new();
+			item.LoadWithTemplate(reader, item.GetTemplate());
+			return item;
+		}
+		#endregion
+
+		#region Item[] LoadItemsWithTemplate
 		/// <summary>
 		/// Загружает массив элементов из файла. Перед каждым элементом должен быть его шаблон.
 		/// </summary>
@@ -302,9 +319,99 @@ namespace DarkTown
 			}
 			return items;
 		}
+		#endregion
 
-		//
+		#region Item[] LoadItemsWishOnlyTemplate
+		public static Item[] LoadItemsWishOnlyTemplate<Item>(string path) where Item : ILoadedDDt, new()
+		{
+			using BinaryReader binaryReader = new(File.OpenRead(path));
+			List<Item> items = new();
+			string template = binaryReader.ReadString();
+			while (binaryReader.BaseStream.Length != binaryReader.BaseStream.Position)
+			{
+				items.Add(LoadItemWithTemplate<Item>(binaryReader, template));
+			}
+			binaryReader.Close();
+			return items.ToArray();
+		}
+		public static Item[] LoadItemsWithOnlyTemplate<Item>(BinaryReader reader) where Item : ILoadedDDt, new()
+		{
+			List<Item> items = new();
+			string template = reader.ReadString();
+			while (reader.BaseStream.Length != reader.BaseStream.Position)
+			{
+				items.Add(LoadItemWithTemplate<Item>(reader, template));
+			}
+			return items.ToArray();
+		}
+		public static Item[] LoadItemsWithOnlyTemplate<Item>(string path, int count) where Item : ILoadedDDt, new()
+		{
+			using BinaryReader binaryReader = new(File.OpenRead(path));
+			Item[] items = new Item[count];
+			string template = binaryReader.ReadString();
+			for (int i = 0; i < count; i++)
+			{
+				items[i] = LoadItemWithTemplate<Item>(binaryReader, template);
+			}
+			binaryReader.Close();
+			return items;
+		}
+		public static Item[] LoadItemsWithOnlyTemplate<Item>(BinaryReader reader, int count) where Item : ILoadedDDt, new()
+		{
+			Item[] items = new Item[count];
+			string template = reader.ReadString();
+			for (int i = 0; i < count; i++)
+			{
+				items[i] = LoadItemWithTemplate<Item>(reader, template);
+			}
+			return items;
+		}
+		#endregion
 
+		#region Item[] LoadItemsWithStandardTemplate
+		public static Item[] LoadItemsWithStandardTemplate<Item>(string path) where Item : ILoadedDDt, new()
+		{
+			using BinaryReader binaryReader = new(File.OpenRead(path));
+			List<Item> items = new();
+			while (binaryReader.BaseStream.Length != binaryReader.BaseStream.Position)
+			{
+				items.Add(LoadItemWithStandardTemplate<Item>(binaryReader));
+			}
+			binaryReader.Close();
+			return items.ToArray();
+		}
+		public static Item[] LoadItemsWithStandardTemplate<Item>(BinaryReader reader) where Item : ILoadedDDt, new()
+		{
+			List<Item> items = new();
+			while (reader.BaseStream.Length != reader.BaseStream.Position)
+			{
+				items.Add(LoadItemWithStandardTemplate<Item>(reader));
+			}
+			return items.ToArray();
+		}
+		public static Item[] LoadItemsWithStandardTemplate<Item>(string path, int count) where Item : ILoadedDDt, new()
+		{
+			using BinaryReader binaryReader = new(File.OpenRead(path));
+			Item[] items = new Item[count];
+			for (int i = 0; i < count; i++)
+			{
+				items[i] = LoadItemWithStandardTemplate<Item>(binaryReader);
+			}
+			binaryReader.Close();
+			return items;
+		}
+		public static Item[] LoadItemsWithStandardTemplate<Item>(BinaryReader reader, int count) where Item : ILoadedDDt, new()
+		{
+			Item[] items = new Item[count];
+			for (int i = 0; i < count; i++)
+			{
+				items[i] = LoadItemWithStandardTemplate<Item>(reader);
+			}
+			return items;
+		}
+		#endregion
+
+		#region SaveItemWithTemplate
 		/// <summary>
 		/// Сохраняет элемент в файл. Записывает шаблон из экземпляра.
 		/// </summary>
@@ -364,7 +471,15 @@ namespace DarkTown
 				items[i].Save(binaryWriter);
 			}
 		}
+
+		public static void SaveItemsWithOnlyTemplate<Item>(Item[] items, string path) where Item : ILoadedDDt, new()
+		{
+
+		}
 		#endregion
+
+		#endregion
+
 		#endregion
 
 
@@ -391,6 +506,5 @@ namespace DarkTown
 
 			public string GetTemplate();
 		}
-
 	}
 }
